@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">С-М Весы</string>
-    <string name="title_main">Работа</string>
+    <string name="title_work">Работа</string>
     <string name="title_connect">Подключение</string>
+    <string name="no_scales_connected">Нет подключения к весам</string>
+    <string name="dimension_kg">кг</string>
 </resources>
