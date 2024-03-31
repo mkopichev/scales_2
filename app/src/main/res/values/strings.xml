@@ -2,6 +2,9 @@
     <string name="app_name">С-М Весы</string>
     <string name="title_work">Работа</string>
     <string name="title_connect">Подключение</string>
+    <string name="ip_hint">IP адрес</string>
+    <string name="port_hint">Порт</string>
+    <string name="test_button_text">Проверить подключение</string>
     <string name="no_scales_connected">Нет подключения к весам</string>
     <string name="dimension_kg">кг</string>
 </resources>
