@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.zip.Inflater;
 
-public class FragmentWork extends Fragment implements Display{
+public class FragmentWork extends Fragment {
 
     View view;
     TextView weightText;
@@ -24,10 +24,5 @@ public class FragmentWork extends Fragment implements Display{
         weightText = view.findViewById(R.id.weight_text);
 
         return view;
-    }
-
-    @Override
-    public void showWeight(Float weight) {
-        weightText.setText(String.valueOf(weight));
     }
 }

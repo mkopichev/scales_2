@@ -1,5 +1,11 @@
 package com.example.scales_2;
 
+import static com.example.scales_2.network_stuff.Protocol100.buildTransmitMessage;
+import static com.example.scales_2.network_stuff.Protocol100.parseScalesName;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.LayoutInflater;
@@ -9,9 +15,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import android.Manifest;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.scales_2.network_stuff.NetworkHandler;
+import com.example.scales_2.network_stuff.Protocol100;
+
+import java.io.IOException;
 
 public class FragmentConnect extends Fragment {
 
@@ -19,7 +34,13 @@ public class FragmentConnect extends Fragment {
     EditText ipEditText;
     EditText portEditText;
     Button checkCOnnectionButton;
+    Button confirmConnectionButton;
     TextView statusText;
+    ScalesOperator scalesOperator;
+
+    public FragmentConnect(ScalesOperator scalesOperator) {
+        this.scalesOperator = scalesOperator;
+    }
 
     @Nullable
     @Override
@@ -72,13 +93,72 @@ public class FragmentConnect extends Fragment {
 
         statusText = view.findViewById(R.id.scale_check_connection_status);
 
+        ButtonListener buttonListener = new ButtonListener();
+
+        confirmConnectionButton = view.findViewById(R.id.scale_confirm_connection_button);
+        confirmConnectionButton.setOnClickListener(buttonListener);
+
         checkCOnnectionButton = view.findViewById(R.id.scale_check_connection_button);
-        checkCOnnectionButton.setOnClickListener(view1 -> {
-            statusText.setText("Подключаемся...");
-        });
+        checkCOnnectionButton.setOnClickListener(buttonListener);
 
         return view;
     }
 
+    class ButtonListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            WifiManager wifi = (WifiManager)getContext().getSystemService(Context.WIFI_SERVICE);
+            if(!wifi.isWifiEnabled()) {
+                statusText.setText("WiFi отключен на планшете");
+                return;
+            }
+
+            ConnectivityManager cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            if(cm.getActiveNetwork() == null) {
+                statusText.setText("Необходимо покдлючится к сети WiFi");
+                return;
+            }
+
+
+            String ip = ipEditText.getText().toString();
+            if (!ip.strip().matches("^[0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}$")) {
+                statusText.setText("Недопустимый ip");
+                return;
+            }
+            String[] splits = ip.split("\\.");
+            for (String split : splits) {
+                if (Integer.parseInt(split) > 255) {
+                    statusText.setText("Недопустимый ip");
+                    return;
+                }
+            }
+            String port = portEditText.getText().toString();
+            if(!port.strip().matches("^\\d{1,5}")) {
+                statusText.setText("Недопустимый порт");
+                return;
+            }
+            try {
+                if(Integer.parseInt(port) > 65535){
+                    statusText.setText("Недопустимый порт");
+                    return;
+                }
+            }
+            catch (NumberFormatException e) {
+                statusText.setText("Недопустимый порт");
+                return;
+            }
+
+            if(view.getId() == checkCOnnectionButton.getId()) {
+
+                statusText.setText("Идет проверка...");
+
+                scalesOperator.checkConnection(ip, Integer.parseInt(port));
+            }
+            if(view.getId() == confirmConnectionButton.getId()) {
+                scalesOperator.confirmConnectionAddres(ip, Integer.parseInt(port));
+            }
+        }
+    }
 
 }

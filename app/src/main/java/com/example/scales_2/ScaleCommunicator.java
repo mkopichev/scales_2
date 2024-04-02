@@ -2,12 +2,17 @@ package com.example.scales_2;
 
 import android.util.Log;
 
-public class ScaleCommunicator implements Polling {
+import com.example.scales_2.network_stuff.NetworkHandler;
+import com.example.scales_2.network_stuff.Protocol100;
 
-    Display displayer;
+import java.io.IOException;
+
+public class ScaleCommunicator implements ScalesNetworkManager {
+
+    ScalesDisplay displayer;
     Thread pollThread;
 
-    public ScaleCommunicator(Display display) {
+    public ScaleCommunicator(ScalesDisplay display) {
         this.displayer = display;
     }
 
@@ -37,5 +42,32 @@ public class ScaleCommunicator implements Polling {
     @Override
     public void stopPolling() {
 
+    }
+
+    @Override
+    public void testConnection(String ip, int port) {
+        Thread testConnectionThread = new Thread(()-> {
+            byte[] response = new byte[0];
+            try {
+                response = NetworkHandler.transmitForResponse(ip, port,
+                        Protocol100.buildTransmitMessage(Protocol100.Commands.CMD_GET_NAME, null));
+            } catch (IOException e) {
+                e.printStackTrace();
+                displayer.showStatus("Ошибка сети");
+
+                return;
+            }
+            if(response == null) {
+                displayer.showStatus("Нет ответа от весов");
+                return;
+            }
+            String name = Protocol100.parseScalesName(response);
+            if(name == null) {
+                displayer.showStatus("Устройство не опознано");
+                return;
+            }
+            displayer.showStatus("Найдены весы " + name);
+        });
+        testConnectionThread.start();
     }
 }
