@@ -1,4 +1,4 @@
-package com.example.scales_2;
+package com.example.scales_2.interfaces;
 
 public interface ScalesOperator {
     void checkConnection(String ip, int port);

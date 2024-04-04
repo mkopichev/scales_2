@@ -44,7 +44,6 @@ public class NetworkHandler {
         Socket socket = new Socket();
 
         InetSocketAddress address = new InetSocketAddress(ip, port);
-        System.out.println(address.toString());
 
         try {
             socket.connect(address, 5000);

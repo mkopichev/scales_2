@@ -90,19 +90,19 @@ public abstract class Protocol100 {
      * @param buff - buff
      * @return mass
      */
-    public static int parseMass(byte[] buff) {
+    public static Integer parseMass(byte[] buff) {
         ByteBuffer byteBuffer;
         try {
             byteBuffer = ByteBuffer.wrap(buff).order(ByteOrder.LITTLE_ENDIAN);
 
             short length = byteBuffer.getShort(0);
             short crc = byteBuffer.getShort(length + 2);
-            if (crc != calculateCRC(Arrays.copyOfRange(buff, 2, length + 2))) return -1;
-            if (byteBuffer.getChar(8) == 0) return -2;
-            if (byteBuffer.getChar(10) == 1) return -2;
+            if (crc != calculateCRC(Arrays.copyOfRange(buff, 2, length + 2))) return null;
+            if (byteBuffer.getChar(8) == 0) return null;
+            if (byteBuffer.getChar(10) == 1) return null;
             return byteBuffer.getInt(3);
         } catch (Exception e) {
-            return -1;
+            return null;
         }
     }
 
