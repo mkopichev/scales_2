@@ -16,9 +16,7 @@ public class ScaleCommunicator implements ScalesNetworkManager {
     private ScalesDisplay displayer;
     private Thread pollThread;
 
-    private String ip;
-    private int port;
-
+    private int errorCount = 0;
 
     public ScaleCommunicator(ScalesDisplay display) {
         this.displayer = display;
@@ -30,18 +28,22 @@ public class ScaleCommunicator implements ScalesNetworkManager {
             Integer weight;
             while (true) {
                 try {
-                    byte[] response;
+                    byte[] response = new byte[0];
                     try {
+                        Log.e("TAG", "ip " + ip + "port " + port );
                         response = NetworkHandler.transmitForResponse(ip, port, buildTransmitMessage(Protocol100.Commands.CMD_GET_MASS, null));
                     } catch (Exception e) {
                         e.printStackTrace();
-                        displayer.showPollingStatus("Ошибка соединения");
-                        return;
+                        if(errorCount++ > 30) {
+                            displayer.showPollingStatus("Ошибка соединения");
+                            return;
+                        }
                     }
                     if(response == null) {
                         displayer.showPollingStatus("Ошибка соединения");
                         return;
                     }
+                    errorCount = 0;
                     displayer.showPollingStatus("Ошибок нет");
                     weight = Protocol100.parseMass(response);
                     displayer.showWeight(weight);

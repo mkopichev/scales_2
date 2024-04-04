@@ -27,6 +27,8 @@ public class FragmentConnect extends Fragment {
     Button confirmConnectionButton;
     TextView statusText;
     ScalesOperator scalesOperator;
+    String ip;
+    int port;
 
     public FragmentConnect(ScalesOperator scalesOperator) {
         this.scalesOperator = scalesOperator;
@@ -90,6 +92,10 @@ public class FragmentConnect extends Fragment {
 
         checkCOnnectionButton = view.findViewById(R.id.scale_check_connection_button);
         checkCOnnectionButton.setOnClickListener(buttonListener);
+
+        if(ip != null)
+            ipEditText.setText(ip);
+        portEditText.setText(String.valueOf(port));
 
         return view;
     }

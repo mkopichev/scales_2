@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
                 }
                 if (tab == binding.navView.getTabAt(1)) {
                 // Settings Tab
+                    fragmentConnect.ip = ip;
+                    fragmentConnect.port = port;
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.nav_host_fragment_activity_main, fragmentConnect).commit();
                 }
@@ -113,9 +117,15 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
 
         // To force select and show first tab
         binding.navView.getTabAt(1).select();
-        binding.navView.getTabAt(0).select();
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(()-> binding.navView.getTabAt(0).select(), 100);
+    }
 
-
+    @Override
+    protected void onPause() {
+        Log.e("TAG", "onPause");
+        scaleCommunicator.stopPolling();
+        super.onPause();
     }
 
     @Override
