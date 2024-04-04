@@ -16,9 +16,7 @@ public class ScaleCommunicator implements ScalesNetworkManager {
     private ScalesDisplay displayer;
     private Thread pollThread;
 
-    private String ip;
-    private int port;
-
+    private int errorCount = 0;
 
     public ScaleCommunicator(ScalesDisplay display) {
         this.displayer = display;
@@ -30,19 +28,22 @@ public class ScaleCommunicator implements ScalesNetworkManager {
             Integer weight;
             while (true) {
                 try {
-                    byte[] response;
+                    byte[] response = new byte[0];
                     try {
                         response = NetworkHandler.transmitForResponse(ip, port, buildTransmitMessage(Protocol100.Commands.CMD_GET_MASS, null));
                     } catch (Exception e) {
                         e.printStackTrace();
-                        displayer.showPollingStatus("Ошибка соединения");
-                        return;
+                        if(errorCount++ > 30) {
+                            displayer.showPollingStatus("Ошибка соединения");
+                            return;
+                        }
                     }
                     if(response == null) {
                         displayer.showPollingStatus("Ошибка соединения");
                         return;
                     }
-                    displayer.showPollingStatus("Ошибок нет");
+                    errorCount = 0;
+                    displayer.showPollingStatus("Опрос весов");
                     weight = Protocol100.parseMass(response);
                     displayer.showWeight(weight);
                     Thread.sleep(100);
@@ -54,11 +55,11 @@ public class ScaleCommunicator implements ScalesNetworkManager {
         };
         if (pollThread == null) {
             pollThread = new Thread(poller);
-            Log.e("TAG", "startPolling");
+            Log.i("TAG", "startPolling");
             pollThread.start();
         }
         if (pollThread.isAlive()) {
-            Log.e("TAG", "Already running");
+            Log.i("TAG", "Already running");
             return;
         }
 
