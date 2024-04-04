@@ -5,6 +5,45 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/scale_selected_ip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="70sp"
+        app:layout_constraintEnd_toStartOf="@id/scale_selected_port"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/scale_selected_port"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="70sp"
+        app:layout_constraintEnd_toEndOf="@id/scale_poll_status"
+        app:layout_constraintStart_toEndOf="@id/scale_selected_ip"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/scale_poll_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="70sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/scale_selected_port"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
         android:id="@+id/weight_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +52,6 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="70sp"
-        android:text="@string/title_work"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,8 +1,5 @@
 package com.example.scales_2;
 
-import static com.example.scales_2.network_stuff.Protocol100.buildTransmitMessage;
-import static com.example.scales_2.network_stuff.Protocol100.parseScalesName;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
@@ -15,18 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import android.Manifest;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.scales_2.network_stuff.NetworkHandler;
-import com.example.scales_2.network_stuff.Protocol100;
-
-import java.io.IOException;
+import com.example.scales_2.interfaces.ScalesOperator;
 
 public class FragmentConnect extends Fragment {
 

@@ -16,12 +16,26 @@ public class FragmentWork extends Fragment {
 
     View view;
     TextView weightText;
+    TextView pollIpText;
+    TextView pollPortText;
+    TextView pollStatusText;
+
+    String ip;
+    int port;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_work, container, false);
 
         weightText = view.findViewById(R.id.weight_text);
+        pollIpText = view.findViewById(R.id.scale_selected_ip);
+        pollPortText = view.findViewById(R.id.scale_selected_port);
+        pollStatusText = view.findViewById(R.id.scale_poll_status);
+
+        if(ip != null) {
+            pollIpText.setText(ip);
+        }
+        pollPortText.setText(String.valueOf(port));
 
         return view;
     }
