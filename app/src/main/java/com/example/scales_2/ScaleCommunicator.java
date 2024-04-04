@@ -30,7 +30,6 @@ public class ScaleCommunicator implements ScalesNetworkManager {
                 try {
                     byte[] response = new byte[0];
                     try {
-                        Log.e("TAG", "ip " + ip + "port " + port );
                         response = NetworkHandler.transmitForResponse(ip, port, buildTransmitMessage(Protocol100.Commands.CMD_GET_MASS, null));
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -44,7 +43,7 @@ public class ScaleCommunicator implements ScalesNetworkManager {
                         return;
                     }
                     errorCount = 0;
-                    displayer.showPollingStatus("Ошибок нет");
+                    displayer.showPollingStatus("Опрос весов");
                     weight = Protocol100.parseMass(response);
                     displayer.showWeight(weight);
                     Thread.sleep(100);
@@ -56,11 +55,11 @@ public class ScaleCommunicator implements ScalesNetworkManager {
         };
         if (pollThread == null) {
             pollThread = new Thread(poller);
-            Log.e("TAG", "startPolling");
+            Log.i("TAG", "startPolling");
             pollThread.start();
         }
         if (pollThread.isAlive()) {
-            Log.e("TAG", "Already running");
+            Log.i("TAG", "Already running");
             return;
         }
 

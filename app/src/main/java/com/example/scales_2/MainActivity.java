@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
         });
 
         SharedPreferences sharedPrefs = getPreferences(Context.MODE_PRIVATE);
-        ip = sharedPrefs.getString("scaleIP", "/192.168.0.1");
+        ip = sharedPrefs.getString("scaleIP", "192.168.0.1");
         port = sharedPrefs.getInt("scalePort", 5001);
 
         fragmentWork.ip = ip;
@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
     protected void onResume() {
         super.onResume();
 
+        if(binding.navView.getTabAt(1).isSelected())
+            return;
+
         // To force select and show first tab
         binding.navView.getTabAt(1).select();
         Handler handler = new Handler(Looper.getMainLooper());
@@ -123,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
 
     @Override
     protected void onPause() {
-        Log.e("TAG", "onPause");
         scaleCommunicator.stopPolling();
         super.onPause();
     }
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
         runOnUiThread(()-> {
             if(weight == null)
                 return;
-            fragmentWork.weightText.setText(String.valueOf(weight) + " г");
+            fragmentWork.weightText.setText(String.format("%d гр", weight));
         });
     }
 

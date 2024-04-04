@@ -3,6 +3,7 @@ package com.example.scales_2.network_stuff;
 import android.content.Context;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 
 
 import java.io.DataInputStream;
@@ -38,8 +39,7 @@ public class NetworkHandler {
      * @throws IOException IOException
      */
     public static byte[] transmitForResponse(String ip, int port, byte[] request) throws IOException {
-        System.out.println("request" + Arrays.toString(request));
-
+        Log.i("Scales.POLL", "request" + Arrays.toString(request));
 
         Socket socket = new Socket();
 
@@ -52,9 +52,8 @@ public class NetworkHandler {
             e.printStackTrace();
             return null;
         }
-        System.out.println("sent");
 
-        socket.setSoTimeout(5000);
+        socket.setSoTimeout(1000);
         DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
         DataInputStream bufferedReader = new DataInputStream(socket.getInputStream());
         dataOutputStream.write(request);
