@@ -10,13 +10,11 @@
 
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:autofillHints="ip"
         android:hint="@string/ip_hint"
         android:inputType="phone"
         android:textAlignment="center"
+        android:textColor="@color/blue_dark"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/scale_port"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,24 +25,22 @@
         android:id="@+id/scale_port"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:autofillHints="port"
         android:hint="@string/port_hint"
         android:textAlignment="center"
+        android:textColor="@color/blue_dark"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/scale_check_connection_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scale_ip_address" />
+        app:layout_constraintTop_toBottomOf="@id/scale_ip_address"
+        android:inputType="number" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/scale_check_connection_button"
+        style="@style/button_general"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:breakStrategy="simple"
-        android:lines="2"
         android:text="@string/test_button_text"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/scale_check_connection_status"
@@ -53,8 +49,9 @@
         app:layout_constraintTop_toBottomOf="@id/scale_port"
         app:layout_constraintWidth_percent="0.4" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/scale_confirm_connection_button"
+        style="@style/button_general"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="2"
@@ -70,11 +67,9 @@
         android:id="@+id/scale_check_connection_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:hint="Статус"
+        android:hint="@string/status_hint"
         android:textAlignment="center"
+        android:textColor="@color/blue_dark"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

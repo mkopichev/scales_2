@@ -8,7 +8,6 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,14 +16,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.scales_2.interfaces.ScalesOperator;
+import com.google.android.material.button.MaterialButton;
 
 public class FragmentConnect extends Fragment {
 
     View view;
     EditText ipEditText;
     EditText portEditText;
-    Button checkCOnnectionButton;
-    Button confirmConnectionButton;
+    MaterialButton checkConnectionButton;
+    MaterialButton confirmConnectionButton;
     TextView statusText;
     ScalesOperator scalesOperator;
     String ip;
@@ -90,8 +90,8 @@ public class FragmentConnect extends Fragment {
         confirmConnectionButton = view.findViewById(R.id.scale_confirm_connection_button);
         confirmConnectionButton.setOnClickListener(buttonListener);
 
-        checkCOnnectionButton = view.findViewById(R.id.scale_check_connection_button);
-        checkCOnnectionButton.setOnClickListener(buttonListener);
+        checkConnectionButton = view.findViewById(R.id.scale_check_connection_button);
+        checkConnectionButton.setOnClickListener(buttonListener);
 
         if(ip != null)
             ipEditText.setText(ip);
@@ -145,7 +145,7 @@ public class FragmentConnect extends Fragment {
                 return;
             }
 
-            if(view.getId() == checkCOnnectionButton.getId()) {
+            if(view.getId() == checkConnectionButton.getId()) {
 
                 statusText.setText("Идет проверка...");
 
