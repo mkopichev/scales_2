@@ -15,18 +15,13 @@
         android:layout_marginEnd="8dp"
         android:autofillHints="ip"
         android:hint="@string/ip_hint"
+        android:inputType="phone"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/scale_port"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="ip"
-        android:inputType="phone" />
-=======
         app:layout_constraintTop_toTopOf="parent" />
->>>>>>> a0cec90 (button arranged)
 
     <EditText
         android:id="@+id/scale_port"
@@ -42,12 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/scale_check_connection_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scale_ip_address"
-<<<<<<< HEAD
-        android:autofillHints="port"
-=======
->>>>>>> a0cec90 (button arranged)
-        android:inputType="number" />
+        app:layout_constraintTop_toBottomOf="@id/scale_ip_address" />
 
     <Button
         android:id="@+id/scale_check_connection_button"
@@ -83,9 +73,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:hint="Статус"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:hint="Статус"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
