@@ -4,6 +4,7 @@
     <string name="title_connect">Подключение</string>
     <string name="ip_hint">IP адрес</string>
     <string name="port_hint">Порт</string>
+    <string name="status_hint">Статус</string>
     <string name="test_button_text">Проверить подключение</string>
     <string name="confirm_button_text">Подключиться</string>
     <string name="no_scales_connected">Нет подключения к весам</string>

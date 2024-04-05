@@ -8,7 +8,6 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,14 +16,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.scales_2.interfaces.ScalesOperator;
+import com.google.android.material.button.MaterialButton;
 
 public class FragmentConnect extends Fragment {
 
     View view;
     EditText ipEditText;
     EditText portEditText;
-    Button checkCOnnectionButton;
-    Button confirmConnectionButton;
+    MaterialButton checkConnectionButton;
+    MaterialButton confirmConnectionButton;
     TextView statusText;
     ScalesOperator scalesOperator;
     String ip;
@@ -90,10 +90,10 @@ public class FragmentConnect extends Fragment {
         confirmConnectionButton = view.findViewById(R.id.scale_confirm_connection_button);
         confirmConnectionButton.setOnClickListener(buttonListener);
 
-        checkCOnnectionButton = view.findViewById(R.id.scale_check_connection_button);
-        checkCOnnectionButton.setOnClickListener(buttonListener);
+        checkConnectionButton = view.findViewById(R.id.scale_check_connection_button);
+        checkConnectionButton.setOnClickListener(buttonListener);
 
-        if(ip != null)
+        if (ip != null)
             ipEditText.setText(ip);
         portEditText.setText(String.valueOf(port));
 
@@ -103,15 +103,15 @@ public class FragmentConnect extends Fragment {
     class ButtonListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            WifiManager wifi = (WifiManager)getContext().getSystemService(Context.WIFI_SERVICE);
-            if(!wifi.isWifiEnabled()) {
+            WifiManager wifi = (WifiManager) getContext().getSystemService(Context.WIFI_SERVICE);
+            if (!wifi.isWifiEnabled()) {
                 statusText.setText("WiFi отключен на планшете");
                 return;
             }
 
             ConnectivityManager cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            if(cm.getActiveNetwork() == null) {
+            if (cm.getActiveNetwork() == null) {
                 statusText.setText("Необходимо покдлючится к сети WiFi");
                 return;
             }
@@ -130,28 +130,27 @@ public class FragmentConnect extends Fragment {
                 }
             }
             String port = portEditText.getText().toString();
-            if(!port.strip().matches("^\\d{1,5}")) {
+            if (!port.strip().matches("^\\d{1,5}")) {
                 statusText.setText("Недопустимый порт");
                 return;
             }
             try {
-                if(Integer.parseInt(port) > 65535){
+                if (Integer.parseInt(port) > 65535) {
                     statusText.setText("Недопустимый порт");
                     return;
                 }
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 statusText.setText("Недопустимый порт");
                 return;
             }
 
-            if(view.getId() == checkCOnnectionButton.getId()) {
+            if (view.getId() == checkConnectionButton.getId()) {
 
                 statusText.setText("Идет проверка...");
 
                 scalesOperator.checkConnection(ip, Integer.parseInt(port));
             }
-            if(view.getId() == confirmConnectionButton.getId()) {
+            if (view.getId() == confirmConnectionButton.getId()) {
                 scalesOperator.confirmConnectionAddres(ip, Integer.parseInt(port));
             }
         }
