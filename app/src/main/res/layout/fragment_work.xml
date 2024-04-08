@@ -5,51 +5,78 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-    <TextView
-        android:id="@+id/scale_selected_ip"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/scale_selected_ip_field"
+        style="@style/input_non_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="@color/blue_dark"
-        android:textSize="30sp"
+        app:helperText="@string/ip_hint"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/scale_selected_port"
-        app:layout_constraintHorizontal_weight="0.2"
+        app:layout_constraintEnd_toStartOf="@id/scale_selected_port_field"
+        app:layout_constraintHorizontal_weight="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weight_text"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@id/weight_text">
 
-    <TextView
-        android:id="@+id/scale_selected_port"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/scale_selected_ip"
+            style="@style/input_non_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/blue_dark"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/scale_selected_port_field"
+        style="@style/input_non_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-        android:textAlignment="center"
-        android:textColor="@color/blue_dark"
-        android:textSize="30sp"
+        app:helperText="@string/port_hint"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/scale_poll_status"
-        app:layout_constraintHorizontal_weight="0.2"
-        app:layout_constraintStart_toEndOf="@id/scale_selected_ip"
-        app:layout_constraintTop_toBottomOf="@id/weight_text"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintEnd_toStartOf="@id/scale_poll_status_field"
+        app:layout_constraintHorizontal_weight="0.3"
+        app:layout_constraintStart_toEndOf="@id/scale_selected_ip_field"
+        app:layout_constraintTop_toBottomOf="@id/weight_text">
 
-    <TextView
-        android:id="@+id/scale_poll_status"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/scale_selected_port"
+            style="@style/input_non_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/blue_dark"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/scale_poll_status_field"
+        style="@style/input_non_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="@color/blue_dark"
-        android:textSize="30sp"
+        app:helperText="@string/status_hint"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="0.2"
-        app:layout_constraintStart_toEndOf="@id/scale_selected_port"
-        app:layout_constraintTop_toBottomOf="@id/weight_text"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintHorizontal_weight="0.3"
+        app:layout_constraintStart_toEndOf="@id/scale_selected_port_field"
+        app:layout_constraintTop_toBottomOf="@id/weight_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/scale_poll_status"
+            style="@style/input_non_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/blue_dark"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/weight_text"
@@ -64,5 +91,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

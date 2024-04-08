@@ -11,8 +11,34 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/blue_dark</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="input_non_edit_text" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:textColor">?android:attr/textColor</item>
+        <item name="android:textColorHint">?android:attr/textColor</item>
+        <item name="hintTextColor">?android:attr/textColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:editable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="startIconTint">?android:attr/textColor</item>
+    </style>
+
+    <style name="input_edit_text" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:textColor">?android:attr/textColor</item>
+        <item name="android:textColorHint">?android:attr/textColor</item>
+        <item name="hintTextColor">?android:attr/textColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:editable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="startIconTint">?android:attr/textColor</item>
     </style>
 
     <style name="button_general" parent="Widget.Material3.Button">
@@ -21,8 +47,8 @@
         <item name="android:textSize">20sp</item>
         <item name="android:gravity">center</item>
         <item name="android:backgroundTint">@drawable/button_general</item>
-        <item name="android:textColor">?android:attr/textColor</item>
-        <item name="iconTint">?android:attr/textColor</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="iconTint">@color/white</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
         <item name="android:enabled">true</item>
