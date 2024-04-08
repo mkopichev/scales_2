@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="@color/blue_dark"
+            android:inputType="phone"
             android:textSize="25sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -51,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:inputType="number"
             android:textColor="@color/blue_dark"
             android:textSize="25sp" />
 
