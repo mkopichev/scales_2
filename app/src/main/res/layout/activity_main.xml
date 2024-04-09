@@ -7,12 +7,16 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="64dp"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/sever_metropol_logo"
+        android:src="@drawable/sever_metropol_logo_1"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@id/nav_view"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/nav_view"
@@ -36,6 +40,19 @@
             android:text="@string/title_connect" />
 
     </com.google.android.material.tabs.TabLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="1dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/sever_metropol_logo_2"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@id/nav_view"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_activity_main"

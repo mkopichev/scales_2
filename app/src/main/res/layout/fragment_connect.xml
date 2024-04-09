@@ -25,9 +25,9 @@
             style="@style/input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             android:textAlignment="center"
             android:textColor="@color/blue_dark"
-            android:inputType="phone"
             android:textSize="25sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -35,7 +35,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/scale_port_field"
         style="@style/input_edit_text"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/port_hint"
         android:textAlignment="center"
@@ -51,8 +51,8 @@
             style="@style/input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:inputType="number"
+            android:textAlignment="center"
             android:textColor="@color/blue_dark"
             android:textSize="25sp" />
 
@@ -87,13 +87,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/scale_check_connection_status_field"
         style="@style/input_non_edit_text"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:helperText="@string/status_hint"
-        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/scale_port_field"
+        app:layout_constraintStart_toStartOf="@id/scale_ip_address_field"
         app:layout_constraintTop_toBottomOf="@id/scale_check_connection_button">
 
         <com.google.android.material.textfield.TextInputEditText

@@ -105,27 +105,27 @@ public class FragmentConnect extends Fragment {
         public void onClick(View view) {
             WifiManager wifi = (WifiManager) getContext().getSystemService(Context.WIFI_SERVICE);
             if (!wifi.isWifiEnabled()) {
-                statusText.setText("WiFi отключен на планшете");
+                statusText.setText("WiFi отключён на планшете");
                 return;
             }
 
             ConnectivityManager cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
             if (cm.getActiveNetwork() == null) {
-                statusText.setText("Необходимо покдлючится к сети WiFi");
+                statusText.setText("Необходимо подключиться к сети WiFi");
                 return;
             }
 
 
             String ip = ipEditText.getText().toString();
             if (!ip.strip().matches("^[0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}$")) {
-                statusText.setText("Недопустимый ip");
+                statusText.setText("Недопустимый IP адрес");
                 return;
             }
             String[] splits = ip.split("\\.");
             for (String split : splits) {
                 if (Integer.parseInt(split) > 255) {
-                    statusText.setText("Недопустимый ip");
+                    statusText.setText("Недопустимый IP адрес");
                     return;
                 }
             }
