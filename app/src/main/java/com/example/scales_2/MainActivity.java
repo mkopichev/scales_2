@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
         runOnUiThread(()-> {
             if(weight == null)
                 return;
-            fragmentWork.weightText.setText(String.format("%d гр", weight));
+            fragmentWork.weightText.setText(String.format("%d гр.", weight));
         });
     }
 

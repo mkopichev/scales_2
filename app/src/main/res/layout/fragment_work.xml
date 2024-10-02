@@ -5,6 +5,114 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
+    <TextView
+        style="@style/input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_weight_history"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/weight_history_1_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weight_history_1_field"
+        style="@style/input_non_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:helperText="@string/weight_history_1_hint"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/weight_text"
+        app:layout_constraintEnd_toStartOf="@id/weight_history_3_field"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.1"
+        app:suffixText="@string/dimension_g">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weight_history_1"
+            style="@style/input_non_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/blue_dark"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weight_history_2_field"
+        style="@style/input_non_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@id/weight_history_3_field"
+        app:layout_constraintStart_toEndOf="@id/weight_history_1_field"
+        app:layout_constraintTop_toTopOf="@id/weight_history_1_field"
+        app:layout_constraintWidth_percent="0.1"
+        app:suffixText="@string/dimension_g">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weight_history_2"
+            style="@style/input_non_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/blue_dark"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weight_history_3_field"
+        style="@style/input_non_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@id/weight_history_4_field"
+        app:layout_constraintStart_toEndOf="@id/weight_history_2_field"
+        app:layout_constraintTop_toTopOf="@id/weight_history_4_field"
+        app:layout_constraintWidth_percent="0.1"
+        app:suffixText="@string/dimension_g">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weight_history_3"
+            style="@style/input_non_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/blue_dark"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weight_history_4_field"
+        style="@style/input_non_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:helperText="@string/weight_history_4_hint"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/weight_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weight_history_2_field"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.1"
+        app:suffixText="@string/dimension_g">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weight_history_4"
+            style="@style/input_non_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/blue_dark"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/scale_selected_ip_field"
         style="@style/input_non_edit_text"
@@ -90,6 +198,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
