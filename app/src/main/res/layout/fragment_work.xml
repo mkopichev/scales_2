@@ -36,7 +36,7 @@
             style="@style/input_non_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@color/blue_dark"
             android:textSize="20sp" />
 
@@ -59,7 +59,7 @@
             style="@style/input_non_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@color/blue_dark"
             android:textSize="20sp" />
 
@@ -82,7 +82,7 @@
             style="@style/input_non_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@color/blue_dark"
             android:textSize="20sp" />
 
@@ -107,7 +107,7 @@
             style="@style/input_non_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@color/blue_dark"
             android:textSize="20sp" />
 

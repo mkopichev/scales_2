@@ -3,8 +3,8 @@
     <string name="title_work">Измерение</string>
     <string name="title_connect">Подключение</string>
     <string name="title_weight_history">История взвешиваний:</string>
-    <string name="weight_history_1_hint">Более раннее</string>
-    <string name="weight_history_4_hint">Более позднее</string>
+    <string name="weight_history_1_hint">Более ранние</string>
+    <string name="weight_history_4_hint">Более поздние</string>
     <string name="ip_hint">IP адрес</string>
     <string name="port_hint">Порт</string>
     <string name="status_hint">Статус</string>
