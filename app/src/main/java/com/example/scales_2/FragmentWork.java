@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.zip.Inflater;
-
 public class FragmentWork extends Fragment {
 
     View view;
@@ -31,10 +29,10 @@ public class FragmentWork extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_work, container, false);
 
-        weightHistory1 = view.findViewById(R.id.weight_history_1);
-        weightHistory2 = view.findViewById(R.id.weight_history_2);
-        weightHistory3 = view.findViewById(R.id.weight_history_3);
-        weightHistory4 = view.findViewById(R.id.weight_history_4);
+        weightHistory1 = view.findViewById(R.id.weight_history_4);
+        weightHistory2 = view.findViewById(R.id.weight_history_3);
+        weightHistory3 = view.findViewById(R.id.weight_history_2);
+        weightHistory4 = view.findViewById(R.id.weight_history_1);
         weightText = view.findViewById(R.id.weight_text);
         pollIpText = view.findViewById(R.id.scale_selected_ip);
         pollPortText = view.findViewById(R.id.scale_selected_port);
