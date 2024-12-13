@@ -49,9 +49,9 @@ public class FragmentWork extends Fragment {
     }
 
     public void updateHistory(Integer[] weights) {
-        weightHistory1.setText(String.format("%d гр.", weights[0]));
-        weightHistory2.setText(String.format("%d гр.", weights[1]));
-        weightHistory3.setText(String.format("%d гр.", weights[2]));
-        weightHistory4.setText(String.format("%d гр.", weights[3]));
+        weightHistory1.setText(String.format("%d", weights[0]));
+        weightHistory2.setText(String.format("%d", weights[1]));
+        weightHistory3.setText(String.format("%d", weights[2]));
+        weightHistory4.setText(String.format("%d", weights[3]));
     }
 }

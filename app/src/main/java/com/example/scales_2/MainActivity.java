@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
 
     private class WeightHistory {
 
-        private CircularFifoQueue<Integer> weights = new CircularFifoQueue<>(5);
+        private CircularFifoQueue<Integer> weights = new CircularFifoQueue<>(4);
         private Integer lastWeight = 0;
 
         public WeightHistory(){
@@ -224,11 +224,13 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
         }
 
         public void add(Integer weight) {
-            if(lastWeight >= 350) {
-                if(weight < 350)
+            if(lastWeight >= 300) {
+                if(weight < 300)
                     lastWeight = 0;
                 return;
             }
+            if(weight < 300)
+                return;
             lastWeight = weight;
             weights.add(weight);
             fragmentWork.updateHistory(weights.toArray(new Integer[0]));
