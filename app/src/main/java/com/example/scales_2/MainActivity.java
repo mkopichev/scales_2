@@ -19,6 +19,12 @@ import com.example.scales_2.interfaces.ScalesDisplay;
 import com.example.scales_2.interfaces.ScalesOperator;
 import com.google.android.material.tabs.TabLayout;
 
+import java.nio.Buffer;
+import java.util.concurrent.SynchronousQueue;
+
+import org.apache.commons.collections4.collection.SynchronizedCollection;
+import org.apache.commons.collections4.queue.CircularFifoQueue;
+
 
 public class MainActivity extends AppCompatActivity implements ScalesDisplay, ScalesOperator {
 
@@ -35,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
     String ip;
     int port;
 
+    WeightHistory weightHistory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
         fragmentWork = new FragmentWork();
         scaleCommunicator = new ScaleCommunicator(this);
         fragmentConnect = new FragmentConnect(this);
-
+        weightHistory = new WeightHistory();
 
         internetPermissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestMultiplePermissions(),
@@ -62,6 +70,28 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
                     }
                 }
         );
+
+        Thread thread = new Thread(() -> {
+            Integer weight = 350;
+            while(true) {
+                try {
+                    Thread.sleep(1000);
+
+                    Integer finalWeight = weight;
+                    runOnUiThread(() -> showWeight(finalWeight));
+                    Thread.sleep(1000);
+                    runOnUiThread(() -> showWeight(finalWeight));
+
+                    Thread.sleep(1000);
+                    runOnUiThread(() -> showWeight(0));
+                weight++;
+                } catch (InterruptedException e) {
+                    continue;
+                }
+            }
+
+        });
+        thread.start();
 
 
         binding.navView.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -132,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
             if(weight == null)
                 return;
             fragmentWork.weightText.setText(String.format("%d гр.", weight));
+            weightHistory.add(weight);
         });
     }
 
@@ -178,5 +209,34 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
             fragmentWork.pollIpText.setText(ip);
             fragmentWork.pollPortText.setText(String.valueOf(port));
         });
+    }
+
+    private class WeightHistory {
+
+        private CircularFifoQueue<Integer> weights = new CircularFifoQueue<>(5);
+        private Integer lastWeight = 0;
+
+        public WeightHistory(){
+            weights.add(0);
+            weights.add(0);
+            weights.add(0);
+            weights.add(0);
+
+        }
+
+        public void add(Integer weight) {
+            if(lastWeight >= 350) {
+                if(weight < 350)
+                    lastWeight = 0;
+                return;
+            }
+            lastWeight = weight;
+            weights.add(weight);
+            fragmentWork.updateHistory(weights.toArray(new Integer[0]));
+
+
+        }
+
+
     }
 }

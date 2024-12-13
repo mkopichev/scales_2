@@ -46,6 +46,7 @@ public class ScaleCommunicator implements ScalesNetworkManager {
                     displayer.showPollingStatus("Опрос весов");
                     weight = Protocol100.parseMass(response);
                     displayer.showWeight(weight);
+
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     Log.e("TAG", "Poll thread stopped");
