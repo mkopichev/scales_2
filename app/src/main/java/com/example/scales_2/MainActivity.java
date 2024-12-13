@@ -19,10 +19,6 @@ import com.example.scales_2.interfaces.ScalesDisplay;
 import com.example.scales_2.interfaces.ScalesOperator;
 import com.google.android.material.tabs.TabLayout;
 
-import java.nio.Buffer;
-import java.util.concurrent.SynchronousQueue;
-
-import org.apache.commons.collections4.collection.SynchronizedCollection;
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 
 
@@ -71,27 +67,30 @@ public class MainActivity extends AppCompatActivity implements ScalesDisplay, Sc
                 }
         );
 
-        Thread thread = new Thread(() -> {
-            Integer weight = 350;
-            while(true) {
-                try {
-                    Thread.sleep(1000);
 
-                    Integer finalWeight = weight;
-                    runOnUiThread(() -> showWeight(finalWeight));
-                    Thread.sleep(1000);
-                    runOnUiThread(() -> showWeight(finalWeight));
+        // Test thread to check queue functionality. Safe to delete
 
-                    Thread.sleep(1000);
-                    runOnUiThread(() -> showWeight(0));
-                weight++;
-                } catch (InterruptedException e) {
-                    continue;
-                }
-            }
-
-        });
-        thread.start();
+//        Thread thread = new Thread(() -> {
+//            Integer weight = 350;
+//            while(true) {
+//                try {
+//                    Thread.sleep(1000);
+//
+//                    Integer finalWeight = weight;
+//                    runOnUiThread(() -> showWeight(finalWeight));
+//                    Thread.sleep(1000);
+//                    runOnUiThread(() -> showWeight(finalWeight));
+//
+//                    Thread.sleep(1000);
+//                    runOnUiThread(() -> showWeight(0));
+//                weight++;
+//                } catch (InterruptedException e) {
+//                    continue;
+//                }
+//            }
+//
+//        });
+//        thread.start();
 
 
         binding.navView.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
